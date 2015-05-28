@@ -301,6 +301,7 @@ return array_merge(
         //  DFE support
         //-------------------------------------------------------------------------
         'dsp.managed_instance'          => $_managed,
+        'dfe.managed'                   => $_managed,
         'dfe.log_path'                  => $_managed ? $_logFilePath : false,
         'dfe.log_file_name'             => $_managed ? $_logFileName : false,
         //-------------------------------------------------------------------------
