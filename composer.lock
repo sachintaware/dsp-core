@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0294c5a11e0ad6a25d7f5437332ab326",
+    "hash": "c1a23b699d4c94618cf6c515b94b1467",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -503,12 +503,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dreamfactorysoftware/lib-php-common-platform.git",
-                "reference": "fec42cba82a968c38e7428ddaecf4ae306f33193"
+                "reference": "22f0247a23fa82c14436fb7f9b2f120337d3400c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dreamfactorysoftware/lib-php-common-platform/zipball/fec42cba82a968c38e7428ddaecf4ae306f33193",
-                "reference": "fec42cba82a968c38e7428ddaecf4ae306f33193",
+                "url": "https://api.github.com/repos/dreamfactorysoftware/lib-php-common-platform/zipball/22f0247a23fa82c14436fb7f9b2f120337d3400c",
+                "reference": "22f0247a23fa82c14436fb7f9b2f120337d3400c",
                 "shasum": ""
             },
             "require": {
@@ -573,7 +573,7 @@
                 "dsp-core",
                 "sdk"
             ],
-            "time": "2015-05-28 21:32:21"
+            "time": "2015-05-29 18:24:12"
         },
         {
             "name": "dreamfactory/lib-php-common-yii",
@@ -915,6 +915,47 @@
                 "web service"
             ],
             "time": "2015-03-18 18:23:50"
+        },
+        {
+            "name": "illuminate/contracts",
+            "version": "v5.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/contracts.git",
+                "reference": "78f1dba092d5fcb6d3a19537662abe31c4d128fd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/78f1dba092d5fcb6d3a19537662abe31c4d128fd",
+                "reference": "78f1dba092d5fcb6d3a19537662abe31c4d128fd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Illuminate\\Contracts\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                }
+            ],
+            "description": "The Illuminate Contracts package.",
+            "time": "2015-01-30 16:27:08"
         },
         {
             "name": "jeremeamia/SuperClosure",
