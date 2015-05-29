@@ -503,12 +503,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dreamfactorysoftware/lib-php-common-platform.git",
-                "reference": "22f0247a23fa82c14436fb7f9b2f120337d3400c"
+                "reference": "37c3411c6771c479242d1eafd24c8988538d4393"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dreamfactorysoftware/lib-php-common-platform/zipball/22f0247a23fa82c14436fb7f9b2f120337d3400c",
-                "reference": "22f0247a23fa82c14436fb7f9b2f120337d3400c",
+                "url": "https://api.github.com/repos/dreamfactorysoftware/lib-php-common-platform/zipball/37c3411c6771c479242d1eafd24c8988538d4393",
+                "reference": "37c3411c6771c479242d1eafd24c8988538d4393",
                 "shasum": ""
             },
             "require": {
@@ -522,6 +522,7 @@
                 "dreamfactory/oasys": "*",
                 "dreamfactory/php-utils": "~1.0",
                 "dreamfactory/yii": "~1.1.13.15",
+                "illuminate/contracts": "5.0.*",
                 "jeremeamia/superclosure": "*",
                 "kisma/kisma": "~0.2",
                 "pear-pear.php.net/http_request2": "*",
@@ -558,12 +559,17 @@
                 {
                     "name": "Jerry Ablan",
                     "email": "jerryablan@dreamfactory.com",
-                    "role": "Lead Developer, server-side/client-side"
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Todd Appleton",
+                    "email": "toddappleton@dreamfactory.com",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Lee Hicks",
                     "email": "leehicks@dreamfactory.com",
-                    "role": "Lead Developer, server-side/client-side"
+                    "role": "Lead Developer"
                 }
             ],
             "description": "DreamFactory Services Platform(tm) Components Library/SDK for PHP",
@@ -573,7 +579,7 @@
                 "dsp-core",
                 "sdk"
             ],
-            "time": "2015-05-29 18:24:12"
+            "time": "2015-05-29 19:20:16"
         },
         {
             "name": "dreamfactory/lib-php-common-yii",
