@@ -17,6 +17,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+use DreamFactory\Platform\Utility\Enterprise;
+use DreamFactory\Platform\Utility\Fabric;
+use DreamFactory\Platform\Yii\Components\PlatformConsoleApplication;
+use DreamFactory\Platform\Yii\Components\PlatformWebApplication;
 use DreamFactory\Yii\Utility\Pii;
 
 /** index.php -- Main entry point/bootstrap for all processes **/
@@ -34,10 +38,6 @@ const DSP_DEBUG = true;
  */
 const DSP_DEBUG_PHP_ERROR = true;
 /**
- * @type string The location and name of the maintenance mode marker
- */
-const MAINTENANCE_MARKER = '/var/www/.fabric_maintenance';
-/**
  * @type string The redirect to the maintenance page
  */
 const MAINTENANCE_URI = '/static/dreamfactory/maintenance.php';
@@ -46,7 +46,7 @@ const MAINTENANCE_URI = '/static/dreamfactory/maintenance.php';
 //* Maintenance Mode Check
 //******************************************************************************
 
-if ( is_file( MAINTENANCE_MARKER ) )
+if ( is_file( Fabric::MAINTENANCE_MARKER ) || is_file( Enterprise::MAINTENANCE_MARKER ) )
 {
     if ( isset( $_SERVER, $_SERVER['REQUEST_URI'] ) && MAINTENANCE_URI != $_SERVER['REQUEST_URI'] )
     {
@@ -56,39 +56,48 @@ if ( is_file( MAINTENANCE_MARKER ) )
 }
 
 //******************************************************************************
-//* The Guts
+//* Bootstrap
 //******************************************************************************
 
-$_class = 'DreamFactory\\Platform\\Yii\\Components\\Platform' . ( 'cli' == PHP_SAPI ? 'Console' : 'Web' ) . 'Application';
-
-/**
- * Debug-level output based on constant value above
- * For production mode, you'll want to set the above constants to FALSE
- * Get this turned on before anything is loaded
- */
-if ( DSP_DEBUG )
+if ( !function_exists( '__yii_bootstrap' ) )
 {
-    ini_set( 'display_errors', true );
-//    ini_set( 'error_reporting', -1 );
+    /**
+     * @return PlatformWebApplication|PlatformConsoleApplication
+     */
+    function __yii_bootstrap()
+    {
+        $_class = 'DreamFactory\\Platform\\Yii\\Components\\Platform' . ( 'cli' == PHP_SAPI ? 'Console' : 'Web' ) . 'Application';
 
-    defined( 'YII_DEBUG' ) or define( 'YII_DEBUG', true );
-//    defined( 'YII_TRACE_LEVEL' ) or define( 'YII_TRACE_LEVEL', 3 );
+        /**
+         * Debug-level output based on constant value above
+         * For production mode, you'll want to set the above constants to FALSE
+         * Get this turned on before anything is loaded
+         */
+        if ( DSP_DEBUG )
+        {
+            ini_set( 'display_errors', 1 );
+            defined( 'YII_DEBUG' ) or define( 'YII_DEBUG', true );
+        }
+
+        //  Load up composer...
+        $_autoloader = require_once( __DIR__ . '/../vendor/autoload.php' );
+
+        //  Load up Yii if it's not been already
+        if ( !class_exists( '\\Yii', false ) )
+        {
+            require_once __DIR__ . '/../vendor/dreamfactory/yii/framework/yiilite.php';
+        }
+
+        //  php-error utility
+        if ( DSP_DEBUG_PHP_ERROR && function_exists( 'reportErrors' ) )
+        {
+            reportErrors();
+        }
+
+        //  Create the application and run. This does not return until the request is complete.
+        return Pii::run( __DIR__, $_autoloader, $_class );
+    }
 }
 
-//  Load up composer...
-$_autoloader = require_once( __DIR__ . '/../vendor/autoload.php' );
-
-//  Load up Yii if it's not been already
-if ( !class_exists( '\\Yii', false ) )
-{
-    require_once __DIR__ . '/../vendor/dreamfactory/yii/framework/yiilite.php';
-}
-
-//  php-error utility
-if ( DSP_DEBUG_PHP_ERROR && function_exists( 'reportErrors' ) )
-{
-    reportErrors();
-}
-
-//  Create the application and run. This does not return until the request is complete.
-Pii::run( __DIR__, $_autoloader, $_class );
+//  Kick if off
+return __yii_bootstrap();
