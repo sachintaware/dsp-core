@@ -43,19 +43,6 @@ const DSP_DEBUG_PHP_ERROR = true;
 const MAINTENANCE_URI = '/static/dreamfactory/maintenance.php';
 
 //******************************************************************************
-//* Maintenance Mode Check
-//******************************************************************************
-
-if ( is_file( Fabric::MAINTENANCE_MARKER ) || is_file( Enterprise::MAINTENANCE_MARKER ) )
-{
-    if ( isset( $_SERVER, $_SERVER['REQUEST_URI'] ) && MAINTENANCE_URI != $_SERVER['REQUEST_URI'] )
-    {
-        header( 'Location: ' . MAINTENANCE_URI . '?from=' . urlencode( $_SERVER['REQUEST_URI'] ) );
-        die();
-    }
-}
-
-//******************************************************************************
 //* Bootstrap
 //******************************************************************************
 
@@ -93,6 +80,15 @@ if ( !function_exists( '__yii_bootstrap' ) )
         {
             reportErrors();
         }
+
+	if ( is_file( Fabric::MAINTENANCE_MARKER ) || is_file( Enterprise::MAINTENANCE_MARKER ) )
+	{
+	    if ( isset( $_SERVER, $_SERVER['REQUEST_URI'] ) && MAINTENANCE_URI != $_SERVER['REQUEST_URI'] )
+	    {
+	        header( 'Location: ' . MAINTENANCE_URI . '?from=' . urlencode( $_SERVER['REQUEST_URI'] ) );
+	        die();
+	    }
+	}
 
         //  Create the application and run. This does not return until the request is complete.
         return Pii::run( __DIR__, $_autoloader, $_class );
