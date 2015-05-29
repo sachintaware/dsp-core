@@ -18,7 +18,6 @@
  * limitations under the License.
  */
 use DreamFactory\Library\Utility\Includer;
-use DreamFactory\Platform\Utility\Enterprise;
 use DreamFactory\Platform\Utility\Fabric;
 use DreamFactory\Platform\Yii\Components\PlatformConsoleApplication;
 use DreamFactory\Platform\Yii\Components\PlatformWebApplication;
@@ -86,7 +85,7 @@ if ( !function_exists( '__yii_bootstrap' ) )
             reportErrors();
         }
 
-        if ( is_file( Fabric::MAINTENANCE_MARKER ) || is_file( Enterprise::MAINTENANCE_MARKER ) )
+        if ( is_file( Fabric::MAINTENANCE_MARKER ) || is_file( Fabric::DFE_MAINTENANCE_MARKER ) )
         {
             if ( isset( $_SERVER, $_SERVER['REQUEST_URI'] ) && MAINTENANCE_URI != $_SERVER['REQUEST_URI'] )
             {
