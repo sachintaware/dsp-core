@@ -29,4 +29,5 @@ tests/config/salt.config.php
 docs/
 /_ide_*.php
 /composer.lock
-/.env.cluster.json
+/.dfe.cluster.json
+
