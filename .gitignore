@@ -26,3 +26,6 @@ tests/config/env.config.php
 tests/config/keys.config.php
 tests/config/salt.config.php
 docs/
+/.dfe.cluster.json
+/storage.backup
+
