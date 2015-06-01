@@ -3,6 +3,7 @@
 /log
 /storage/
 !/storage/.private
+storage.backup/
 composer.phar
 manifest.yml
 build/
@@ -26,3 +27,7 @@ tests/config/env.config.php
 tests/config/keys.config.php
 tests/config/salt.config.php
 docs/
+/_ide_*.php
+/composer.lock
+/.dfe.cluster.json
+
