@@ -30,4 +30,4 @@ docs/
 /_ide_*.php
 /composer.lock
 /.dfe.cluster.json
-
+/.env
