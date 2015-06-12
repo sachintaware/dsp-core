@@ -1,6 +1,6 @@
 ## DreamFactory Services Platform(tm) Core Server v1.9.4
 
-[![Latest Stable Version](https://poser.pugx.org/dreamfactory/dsp-core/v/stable.svg)](https://packagist.org/packages/dreamfactory/dsp-core) [![Total Downloads](https://poser.pugx.org/dreamfactory/dsp-core/downloads.svg)](https://packagist.org/packages/dreamfactory/dsp-core) [![Latest Unstable Version](https://poser.pugx.org/dreamfactory/dsp-core/v/unstable.svg)](https://packagist.org/packages/dreamfactory/dsp-core) [![License](https://poser.pugx.org/dreamfactory/dsp-core/license.svg)](https://packagist.org/packages/dreamfactory/dsp-core)[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/dreamfactorysoftware/dsp-core?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Latest Stable Version](https://poser.pugx.org/dreamfactory/dsp-core/v/stable.svg)](https://packagist.org/packages/dreamfactory/dsp-core) [![Latest Unstable Version](https://poser.pugx.org/dreamfactory/dsp-core/v/unstable.svg)](https://packagist.org/packages/dreamfactory/dsp-core) [![License](https://poser.pugx.org/dreamfactory/dsp-core/license.svg)](https://packagist.org/packages/dreamfactory/dsp-core) [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/dreamfactorysoftware/dsp-core?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 This is the DreamFactory Services Platform&trade; Core Server repository. It contains the core web components necessary to run the system. The code is available for use under the Apache Version 2.0 license.
 
