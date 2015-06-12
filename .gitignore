@@ -2,6 +2,7 @@
 /vendor
 /log
 /storage/
+/storage.backup/
 !/storage/.private
 storage.backup/
 composer.phar
@@ -31,3 +32,4 @@ docs/
 /composer.lock
 /.dfe.cluster.json
 /.env
+

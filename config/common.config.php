@@ -20,6 +20,8 @@
 use DreamFactory\Library\Utility\Includer;
 use DreamFactory\Platform\Enums\InstallationTypes;
 use DreamFactory\Platform\Enums\LocalStorageTypes;
+use DreamFactory\Platform\Utility\Enterprise;
+use DreamFactory\Yii\Utility\Pii;
 use Kisma\Core\Enums\LoggingLevels;
 
 /**
@@ -35,6 +37,8 @@ require __DIR__ . CONSTANTS_CONFIG_PATH;
 //* Global Configuration Settings
 //*************************************************************************
 
+//  Start out non-managed
+$_managed = false;
 //  The installation type
 $_installType = InstallationTypes::determineType( false, $_installName );
 //  Special fabric-hosted indicator
@@ -54,6 +58,8 @@ $_logFilePath = $_basePath . '/log';
 $_logFileName = basename( \Kisma::get( 'app.log_file_name' ) );
 //  Finally the name of our app
 $_appName = 'DreamFactory Services Platform';
+//  Some blank variables to carry on the good work
+$_dbConfig = $_metadata = null;
 
 //  Ensure the assets path exists so Yii doesn't puke.
 $_assetsPath = $_docRoot . '/assets';
@@ -70,6 +76,9 @@ $_dspSalts = array();
 
 //  Load some keys
 $_keys = Includer::includeIfExists( __DIR__ . KEYS_CONFIG_PATH, true ) ?: array();
+
+//  DFE check
+$_dfe = Includer::includeIfExists( __DIR__ . DFE_CONFIG_PATH, true ) ?: array();
 
 /** @noinspection PhpIncludeInspection */
 if ( false !== ( $_salts = Includer::includeIfExists( __DIR__ . SALT_CONFIG_PATH, true ) ) )
@@ -96,6 +105,7 @@ if ( false !== ( $_salts = Includer::includeIfExists( __DIR__ . SALT_CONFIG_PATH
         'app.app_name'      => $_appName,
         'app.project_root'  => $_basePath,
         'app.vendor_path'   => $_vendorPath,
+        'app.dfe_instance'  => false,
         'app.log_path'      => $_logFilePath,
         'app.log_file_name' => $_logFileName,
         'app.install_type'  => array($_installType => $_installName),
@@ -119,8 +129,35 @@ $_storageKey = \Kisma::get( 'platform.storage_key' );
 /**
  * Set up and return the common settings...
  */
-if ( $_fabricHosted )
+if ( false !== ( $_managed = Enterprise::isManagedInstance() ) )
 {
+    //  Overwrite the initial log location
+    Pii::alias( 'application.log', $_logFilePath = Enterprise::getLogPath() );
+    \Kisma::set( array('app.log_path' => $_logFilePath, 'app.managed_instance' => true,) );
+
+    $_fabricHosted = false;
+
+    \Kisma::set( 'platform.dsp_name', $_instanceName = Enterprise::getInstanceName() );
+
+    $_installType = InstallationTypes::DFE_INSTANCE;
+    $_installName = 'DreamFactory Enterprise';
+    $_storageBasePath = $_storagePath = Enterprise::getStoragePath();
+    $_privatePath = Enterprise::getPrivatePath();
+    $_ownerPrivatePath = Enterprise::getOwnerPrivatePath();
+    $_dbConfig = Enterprise::getConfig( 'db' );
+
+    $_identity = array(
+        'dsp.storage_id'         => $_instanceName,
+        'dsp.private_storage_id' => '.private',
+        'dsp_name'               => $_instanceName,
+    );
+
+    error_log( '>> Managed instance "' . $_instanceName . '" found <<' );
+}
+elseif ( $_fabricHosted )
+{
+    error_log( '>> Hosted instance found <<' );
+
     $_storagePath = $_storageBasePath = LocalStorageTypes::FABRIC_STORAGE_BASE_PATH . '/' . $_storageKey;
     $_privatePath = \Kisma::get( 'platform.private_path' );
     $_storagePath = $_storageBasePath . ( version_compare( DSP_VERSION, '2.0.0', '<' ) ? '/blob' : null );
@@ -133,6 +170,8 @@ if ( $_fabricHosted )
 }
 else
 {
+    error_log( '>> Stand-alone instance found <<' );
+
     $_storagePath = $_storageBasePath = $_basePath . LocalStorageTypes::LOCAL_STORAGE_BASE_PATH;
     $_privatePath = $_basePath . '/storage/.private';
 
@@ -161,7 +200,7 @@ $_instanceSettings = array_merge(
 );
 
 //	Keep these out of the global space
-unset( $_storageBasePath, $_storagePath, $_privatePath, $_identity, $_storageKey );
+unset( $_storageBasePath, $_storagePath, $_privatePath, $_identity, $_storageKey, $_instanceName );
 
 /** @noinspection PhpIncludeInspection */
 return array_merge(
@@ -177,9 +216,15 @@ return array_merge(
         /** The base path */
         'app.base_path'                 => $_basePath,
         /** The private path */
-        'app.private_path'              => $_basePath . $_instanceSettings[LocalStorageTypes::PRIVATE_PATH],
+        'app.private_path'              =>
+            $_managed
+                ? $_instanceSettings[LocalStorageTypes::PRIVATE_PATH]
+                : $_basePath . $_instanceSettings[LocalStorageTypes::PRIVATE_PATH],
         /** The plugins path */
-        'app.plugins_path'              => $_basePath . $_instanceSettings[LocalStorageTypes::PLUGINS_PATH],
+        'app.plugins_path'              =>
+            $_managed
+                ? $_instanceSettings[LocalStorageTypes::PLUGINS_PATH]
+                : $_basePath . $_instanceSettings[LocalStorageTypes::PLUGINS_PATH],
         /** Enable/disable the internal profiler */
         'app.enable_profiler'           => false,
         //  I do not believe this is being utilized
@@ -191,11 +236,12 @@ return array_merge(
         'base_path'                     => $_basePath,
         /** DSP Information */
         'dsp.version'                   => DSP_VERSION,
-        'dsp.auth_endpoint'             => DEFAULT_INSTANCE_AUTH_ENDPOINT,
         'dsp.fabric_hosted'             => $_fabricHosted,
         'dsp.no_persistent_storage'     => false,
         'cloud.endpoint'                => DEFAULT_CLOUD_API_ENDPOINT,
-        'dsp.metadata_endpoint'         => DEFAULT_METADATA_ENDPOINT,
+        /** 2015-05-07 GHA : I believe these are unused */
+        //'dsp.auth_endpoint'             => DEFAULT_INSTANCE_AUTH_ENDPOINT,
+        //'dsp.metadata_endpoint'         => DEFAULT_METADATA_ENDPOINT,
         /** OAuth salt */
         'oauth.salt'                    => 'rW64wRUk6Ocs+5c7JwQ{69U{]MBdIHqmx9Wj,=C%S#cA%+?!cJMbaQ+juMjHeEx[dlSe%h%kcI',
         //  Any keys included from config/keys.config.php
@@ -252,6 +298,13 @@ return array_merge(
         /** Enable/disable detailed CORS logging */
         'dsp.log_cors_info'             => false,
         //-------------------------------------------------------------------------
+        //  DFE support
+        //-------------------------------------------------------------------------
+        'dsp.managed_instance'          => $_managed,
+        'dfe.managed'                   => $_managed,
+        'dfe.log_path'                  => $_managed ? $_logFilePath : false,
+        'dfe.log_file_name'             => $_managed ? $_logFileName : false,
+        //-------------------------------------------------------------------------
         //	Event and Scripting System Options
         //-------------------------------------------------------------------------
         //  If true, observation of events from afar will be allowed
@@ -290,5 +343,6 @@ return array_merge(
         'dsp.chat_launchpad'            => false,
         'dsp.chat_admin'                => true,
     ),
-    $_dspSalts
+    $_dspSalts,
+    $_dfe
 );

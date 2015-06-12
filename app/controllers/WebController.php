@@ -33,6 +33,7 @@ use DreamFactory\Platform\Resources\User\Session;
 use DreamFactory\Platform\Services\AsgardService;
 use DreamFactory\Platform\Services\SwaggerManager;
 use DreamFactory\Platform\Services\SystemManager;
+use DreamFactory\Platform\Utility\Enterprise;
 use DreamFactory\Platform\Utility\Fabric;
 use DreamFactory\Platform\Utility\Platform;
 use DreamFactory\Platform\Utility\ResourceStore;
@@ -821,9 +822,9 @@ class WebController extends BaseWebController
      */
     public function actionUpgrade()
     {
-        if ( Fabric::fabricHosted() )
+        if ( Enterprise::isManagedInstance() || Fabric::fabricHosted() )
         {
-            throw new \Exception( 'Fabric hosted DSPs can not be upgraded.' );
+            throw new \Exception( 'Hosted instances can not be upgraded.' );
         }
 
         /** @var \CWebUser $_user */
@@ -916,7 +917,7 @@ class WebController extends BaseWebController
      */
     public function actionMetrics()
     {
-        if ( !Fabric::fabricHosted() )
+        if ( !Fabric::fabricHosted() && !Enterprise::isManagedInstance() )
         {
             $_stats = AsgardService::getStats();
         }
@@ -1236,7 +1237,7 @@ class WebController extends BaseWebController
                 break;
 
             case PlatformStates::ADMIN_REQUIRED:
-                if ( Fabric::fabricHosted() )
+                if ( !Enterprise::isManagedInstance() && Fabric::fabricHosted() )
                 {
                     $this->actionActivate();
                 }

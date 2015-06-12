@@ -30,7 +30,7 @@ if ( defined( 'DSP_VERSION' ) )
 /**
  * @var string
  */
-const DSP_VERSION = '1.9.4';
+const DSP_VERSION = '1.10.x-dev';
 /**
  * @var string
  */
@@ -74,11 +74,11 @@ const DEFAULT_CLOUD_API_ENDPOINT = 'http://api.cloud.dreamfactory.com';
 /**
  * @var string
  */
-const DEFAULT_INSTANCE_AUTH_ENDPOINT = 'http://cerberus.fabric.dreamfactory.com/api/instance/credentials';
+const DEFAULT_INSTANCE_AUTH_ENDPOINT = 'https://console.enterprise.dreamfactory.com/api/v1/ops/credentials';
 /**
  * @var string
  */
-const DEFAULT_METADATA_ENDPOINT = 'http://cerberus.fabric.dreamfactory.com/api/instance/metadata';
+const DEFAULT_METADATA_ENDPOINT = 'https://console.enterprise.dreamfactory.com/api/v1/ops/metadata';
 /**
  * @var string
  */
@@ -86,13 +86,12 @@ const DEFAULT_SUPPORT_EMAIL = 'support@dreamfactory.com';
 /**
  * @var string
  */
-const DEFAULT_ADMIN_RESOURCE_SCHEMA = '/admin.resource_schema.config.php';
-/**
- * @var string
- */
 const INSTALL_TYPE_KEY = 'dsp.install_type';
 /**
  * @var string
  */
-const DEFAULT_ADMIN_APP_PATH = '/dreamfactory/dist';
-//const DEFAULT_ADMIN_APP_PATH = '/launchpad';
+const DEFAULT_ADMIN_APP_PATH = '/dreamfactory/dist';    //'/launchpad';
+/**
+ * @var string
+ */
+const DFE_CONFIG_PATH = '/dfe.config.php';

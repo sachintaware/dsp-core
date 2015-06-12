@@ -17,6 +17,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+use DreamFactory\Platform\Utility\Enterprise;
 use DreamFactory\Platform\Utility\Fabric;
 use Kisma\Core\Utility\Log;
 
@@ -73,7 +74,14 @@ if ( file_exists( __DIR__ . '/database.config.php' ) )
 }
 else
 {
-    if ( Fabric::fabricHosted() )
+    if ( Enterprise::isManagedInstance() )
+    {
+        $_fabricHosted = false;
+        $_dfeInstance = true;
+        $_metadata = Enterprise::getInstanceMetadata();
+        $_dbConfig = Enterprise::getDbConfig();
+    }
+    elseif ( Fabric::fabricHosted() )
     {
         list( $_dbConfig, $_metadata ) = Fabric::initialize();
         $_commonConfig['dsp.metadata'] = $_metadata;
