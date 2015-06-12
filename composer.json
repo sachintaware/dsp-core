@@ -25,7 +25,7 @@
 		{
 			"name":  "Todd Appleton",
 			"email": "toddappleton@dreamfactory.com",
-			"role":  "Lead Developer/QA"
+			"role":  "Lead Developer"
 		},
 		{
 			"name":  "Lee Hicks",
@@ -36,7 +36,12 @@
 			"name":  "Arif Islam",
 			"email": "arifislam@dreamfactory.com",
 			"role":  "Lead Developer"
-		}
+		},
+		{
+			"name":  "Unnati Patel",
+			"email": "unnatipatel@dreamfactory.com",
+			"role":  "Quality Assurance"
+        }
 	],
 	"support":           {
 		"email":  "support@dreamfactory.com",
@@ -55,7 +60,7 @@
 	"require":           {
 		"kisma/kisma":                          "~0.2",
 		"jeremeamia/superclosure":              "~1.0",
-		"illuminate/contracts":                 "5.0.*",
+		"illuminate/contracts":                 "5.1.*",
 		"dreamfactory/dsp-admin":               "~1.0.11",
 		"dreamfactory/lib-php-common-platform": "dev-develop as dev-master",
 		"dreamfactory/php-utils":               "dev-develop as dev-master",

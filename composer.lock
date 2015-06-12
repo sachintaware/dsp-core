@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "5a0e7565ddef47dd407609b9f6eeb36a",
+    "hash": "7adf5394e5b2fa1e99d99a362e8e1991",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -503,12 +503,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dreamfactorysoftware/lib-php-common-platform.git",
-                "reference": "66cd5f1e4bd741224216fbadc061a2e3f5ae8367"
+                "reference": "4e50dc17fdba6727c9e26d55a5b06a733e6b3162"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dreamfactorysoftware/lib-php-common-platform/zipball/66cd5f1e4bd741224216fbadc061a2e3f5ae8367",
-                "reference": "66cd5f1e4bd741224216fbadc061a2e3f5ae8367",
+                "url": "https://api.github.com/repos/dreamfactorysoftware/lib-php-common-platform/zipball/4e50dc17fdba6727c9e26d55a5b06a733e6b3162",
+                "reference": "4e50dc17fdba6727c9e26d55a5b06a733e6b3162",
                 "shasum": ""
             },
             "require": {
@@ -522,7 +522,7 @@
                 "dreamfactory/oasys": "*",
                 "dreamfactory/php-utils": "~1.0",
                 "dreamfactory/yii": "~1.1.13.15",
-                "illuminate/contracts": "5.0.*",
+                "illuminate/contracts": "5.1.*",
                 "jeremeamia/superclosure": "*",
                 "kisma/kisma": "~0.2",
                 "pear-pear.php.net/http_request2": "*",
@@ -579,7 +579,7 @@
                 "dsp-core",
                 "sdk"
             ],
-            "time": "2015-06-05 18:42:52"
+            "time": "2015-06-12 17:35:32"
         },
         {
             "name": "dreamfactory/lib-php-common-yii",
@@ -924,25 +924,25 @@
         },
         {
             "name": "illuminate/contracts",
-            "version": "v5.0.33",
+            "version": "v5.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
-                "reference": "b8b11d78724a6f8a62be3b1dfa20fa372f861398"
+                "reference": "6e18848e5d332d802aa8bfa60b95e022023973f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/contracts/zipball/b8b11d78724a6f8a62be3b1dfa20fa372f861398",
-                "reference": "b8b11d78724a6f8a62be3b1dfa20fa372f861398",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/6e18848e5d332d802aa8bfa60b95e022023973f1",
+                "reference": "6e18848e5d332d802aa8bfa60b95e022023973f1",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4.0"
+                "php": ">=5.5.9"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.0-dev"
+                    "dev-master": "5.1-dev"
                 }
             },
             "autoload": {
@@ -962,7 +962,7 @@
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "http://laravel.com",
-            "time": "2015-05-15 07:22:28"
+            "time": "2015-06-08 18:13:21"
         },
         {
             "name": "jeremeamia/SuperClosure",
