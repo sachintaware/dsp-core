@@ -70,7 +70,7 @@
 	},
 	"extra":             {
 		"branch-alias": {
-			"dev-develop": "1.9.x-dev"
+			"dev-develop": "1.10.x-dev"
 		}
 	}
 }
