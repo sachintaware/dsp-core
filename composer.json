@@ -61,7 +61,7 @@
 		"kisma/kisma":                          "~0.2",
 		"jeremeamia/superclosure":              "~1.0",
 		"illuminate/contracts":                 "5.1.*",
-		"dreamfactory/dsp-admin":               "~1.0.11",
+		"dreamfactory/dsp-admin":               "dev-develop as dev-master",
 		"dreamfactory/lib-php-common-platform": "dev-develop as dev-master",
 		"dreamfactory/php-utils":               "dev-develop as dev-master",
 		"dreamfactory/yii":                     "~1.1.13.15"
