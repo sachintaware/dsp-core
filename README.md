@@ -4,19 +4,11 @@
 
 This is the DreamFactory Services Platform&trade; Core Server repository. It contains the core web components necessary to run the system. The code is available for use under the Apache Version 2.0 license.
 
-<a href="http://www.jetbrains.com/phpstorm/" style="display:block;alt="PHP IDE with advanced HTML/CSS/JavaScript editor for hardcore web-developers" title="PHP IDE with advanced HTML/CSS/JavaScript editor for hardcore web-developers"><span style="margin: 3px 0 0 65px;padding: 0;float: left;font-size: 12px;cursor:pointer;  background-image:none;border:0;color: #fff; font-family: trebuchet ms,arial,sans-serif;font-weight: normal;text-align:left;">Proudly developed with</span><br/>![](http://www.jetbrains.com/phpstorm/documentation/phpstorm_banners/phpstorm1/phpstorm468x60_violet.gif)</a>
-
-Please visit our [wiki](https://github.com/dreamfactorysoftware/dsp-core/wiki) for detailed platform and API documentation.
-
-[Instructions] (https://github.com/dreamfactorysoftware/dsp-core/wiki/Usage-Options) for installing DreamFactory in various environments
-
-[Change logs] (https://github.com/dreamfactorysoftware/dsp-core/wiki/CHANGELOG) for current and past releases
-
 ## Important Links
 
 [DreamFactory Website] (https://www.dreamfactory.com)
 
-[Documentation] (https://github.com/dreamfactorysoftware/dsp-core/wiki/)
+[Product Documentation] (https://github.com/dreamfactorysoftware/dsp-core/wiki/)
 
 [Community Forum] (http://community.dreamfactory.com/)
 
