@@ -12,6 +12,18 @@ Please visit our [wiki](https://github.com/dreamfactorysoftware/dsp-core/wiki) f
 
 [Change logs] (https://github.com/dreamfactorysoftware/dsp-core/wiki/CHANGELOG) for current and past releases
 
+## Important Links
+
+[DreamFactory Website] (https://www.dreamfactory.com)
+
+[Documentation] (https://github.com/dreamfactorysoftware/dsp-core/wiki/)
+
+[Community Forum] (http://community.dreamfactory.com/)
+
+[Installation Instructions] (https://github.com/dreamfactorysoftware/dsp-core/wiki/Usage-Options/)
+
+[Change Logs] (https://github.com/dreamfactorysoftware/dsp-core/wiki/CHANGELOG)
+
 ## Overview
 
 DreamFactory is an open source mobile backend that provides RESTful services for building modern applications.
