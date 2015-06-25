@@ -16,7 +16,7 @@ This is the DreamFactory Services Platform&trade; Core Server repository. It con
 
 [Change Logs] (https://github.com/dreamfactorysoftware/dsp-core/wiki/CHANGELOG)
 
-## Overview
+## Product Overview
 
 DreamFactory is an open source mobile backend that provides RESTful services for building modern applications.
 
