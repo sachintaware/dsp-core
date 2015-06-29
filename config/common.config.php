@@ -152,7 +152,8 @@ if ( false !== ( $_managed = Enterprise::isManagedInstance() ) )
         'dsp_name'               => $_instanceName,
     );
 
-    error_log( '>> Managed instance "' . $_instanceName . '" found <<' );
+    error_log( '>> Managed instance "' . $_instanceName . '" found <<', 3, '/tmp/lp.log' );
+    error_log( '>> db : ' . print_r( $_dbConfig, true ), 3, '/tmp/lp.log' );
 }
 elseif ( $_fabricHosted )
 {
