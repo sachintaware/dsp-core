@@ -144,7 +144,6 @@ if ( false !== ( $_managed = Enterprise::isManagedInstance() ) )
     $_storageBasePath = $_storagePath = Enterprise::getStoragePath();
     $_privatePath = Enterprise::getPrivatePath();
     $_ownerPrivatePath = Enterprise::getOwnerPrivatePath();
-    $_dbConfig = Enterprise::getConfig( 'db' );
 
     $_identity = array(
         'dsp.storage_id'         => $_instanceName,
@@ -153,7 +152,6 @@ if ( false !== ( $_managed = Enterprise::isManagedInstance() ) )
     );
 
     error_log( '>> Managed instance "' . $_instanceName . '" found <<', 3, '/tmp/lp.log' );
-    error_log( '>> db : ' . print_r( $_dbConfig, true ), 3, '/tmp/lp.log' );
 }
 elseif ( $_fabricHosted )
 {

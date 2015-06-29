@@ -72,22 +72,8 @@ if ( false === ( $_dbConfig = Includer::includeIfExists( __DIR__ . DATABASE_CONF
 {
     if ( $_managed )
     {
-        $_data = (array)Enterprise::getConfig( 'db' );
-        $_metadata = (array)Enterprise::getConfig( 'env' );
-
-        // default config for local database
-        $_dbConfig = array(
-            'connectionString'      => 'mysql:host=localhost;port=3306;dbname=' . $_data['database'],
-            'username'              => $_data['username'],
-            'password'              => $_data['password'],
-            'emulatePrepare'        => true,
-            'charset'               => 'utf8',
-            'enableProfiling'       => defined( 'YII_DEBUG' ),
-            'enableParamLogging'    => defined( 'YII_DEBUG' ),
-            'schemaCachingDuration' => 3600,
-        );
-
-        unset( $_data );
+        $_dbConfig = (array)Enterprise::getConfig( 'db' );
+        $_metadata = (array)Enterprise::getConfig( 'metadata' );
     }
     else if ( $_fabricHosted )
     {
