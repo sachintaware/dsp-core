@@ -1,10 +1,10 @@
 #!/bin/bash
 # DSP install/update utility
-# Copyright (C) 2012-2014 DreamFactory Software, Inc. All Rights Reserved
+# Copyright 2012-2015 DreamFactory Software, Inc. All Rights Reserved
 #
 # This file is part of the DreamFactory Services Platform(tm) (DSP)
 # DreamFactory Services Platform(tm) <http://github.com/dreamfactorysoftware/dsp-core>
-# Copyright 2012-2013 DreamFactory Software, Inc. <developer-support@dreamfactory.com>
+# Copyright 2012-2015 DreamFactory Software, Inc. <developer-support@dreamfactory.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,6 +20,9 @@
 #
 #
 # CHANGELOG:
+#
+# v1.3.11
+#	Added support for DFE
 #
 # v1.3.10
 #	Added support for user-defined web and install users
@@ -132,7 +135,7 @@
 ##
 ##	Initial settings
 ##
-VERSION=1.3.10
+VERSION=1.3.11
 SYSTEM_TYPE=`uname -s`
 COMPOSER=composer.phar
 COMPOSER_OPTIONS="--no-dev --optimize-autoloader"
@@ -146,6 +149,8 @@ BITNAMI_FULL_STACK=`[ -d "../../../properties.ini" ] && grep -c 'base_stack_name
 BASE=`pwd`
 FABRIC=0
 FABRIC_MARKER=/var/www/.fabric_hosted
+DFE=0
+DFE_MARKER=/var/www/.dfe-managed
 VERBOSE=
 QUIET="--quiet"
 WRITE_ACCESS=0775
@@ -162,7 +167,6 @@ BITNAMI=0
 BLUEMIX=0
 INSTALL_GROUP=
 INSTALL_USER=
-
 
 ## Who am I?
 if [ $UID -eq 0 ] ; then
@@ -241,6 +245,9 @@ LONG_OPTIONS="help,verbose,clean,debug,force,no-composer,interactive,validate,us
 if [ -f "${FABRIC_MARKER}" ] ; then
 	FABRIC=1
 	TAG="Mode: ${B1}Fabric${B2}"
+elif [ -f "${DFE_MARKER}" ] ; then
+    DFE=1
+    TAG="Mode: ${B1}DFE${B2}"
 fi
 
 ## Set the bluemix web dir to htdocs vs. web
@@ -565,7 +572,7 @@ fi
 ## Restart non-essential services (if root)
 ##
 if [ ${ONLY_VALIDATE} -eq 0 ] ; then
-	if [ $UID -eq 0 ] && [ ${FABRIC} -ne 1 ] ; then
+	if [ $UID -eq 0 -a ${FABRIC} -ne 1 -a ${DFE} -ne 1 ] ; then
 #		service mysql start >>${MY_LOG} 2>&1
 
 		if [ "${WEB_USER}" != "${INSTALL_USER}" ] ; then
