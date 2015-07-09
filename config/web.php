@@ -73,7 +73,7 @@ if ( false === ( $_dbConfig = Includer::includeIfExists( __DIR__ . DATABASE_CONF
     if ( $_managed )
     {
         $_dbConfig = (array)Enterprise::getConfig( 'db' );
-        $_metadata = (array)Enterprise::getConfig( 'metadata' );
+        $_metadata = (array)Enterprise::getConfig( 'env' );
     }
     else if ( $_fabricHosted )
     {
